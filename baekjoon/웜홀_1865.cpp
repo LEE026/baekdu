@@ -17,19 +17,14 @@ int main(void) {
 	for (int tt = 0; tt < tc; tt++) {
 		cin >> n >> m >> w;
 
-		//최대 5200개이기에 시간에는 큰영향을주지 않음
 		vector<vector<pair<int, int>>> graph(n + 1);//구현이 쉽도록 +1
 
-		//
 		for (int i = 0; i < m; i++) {
 			cin >> s >> e >> t;
 
-			//어차피 한번에 두개의 길을 이으므로 하나만 확인해도 판단가능
 			graph[s].push_back({ e,t });
 			graph[e].push_back({ s,t });
 		}
-		//웜홀로 가는게 무조건 짧기에 그냥 추가
-		//웜홀은 중복에 대한이야기가 없었음
 		for (int i = 0; i < w; i++) {
 			cin >> s >> e >> t;
 			graph[s].push_back({ e,-t });
