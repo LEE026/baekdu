@@ -35,7 +35,7 @@ int bfs(vector<vector<int>> rooms, queue<pii> q) {
 	return cnt;
 }
 
-int makewall(vector<vector<int>>& rooms, queue<pii>& q, int total, int si, int cnt) {
+int makewall(vector<vector<int>>& rooms, queue<pii>& q, int total, int si,int sj, int cnt) {
 	if (cnt == 3) {
 		return total - bfs(rooms, q);
 	}
@@ -44,13 +44,14 @@ int makewall(vector<vector<int>>& rooms, queue<pii>& q, int total, int si, int c
 
 	int maxv = 0;
 	for (int i = si; i < n; i++) {
-		for (int j = 0; j < m; j++) {
+		for (int j = sj; j < m; j++) {
 			if (rooms[i][j] == 0) {
 				rooms[i][j] = 1;
-				maxv = max(maxv, makewall(rooms, q, total - 1, i, cnt + 1));
+				maxv = max(maxv, makewall(rooms, q, total - 1, i,j+1, cnt + 1));
 				rooms[i][j] = 0;
 			}
 		}
+		sj = 0;
 	}
 	return maxv;
 }
@@ -79,5 +80,5 @@ int main()
 		}
 	}
 
-	cout << makewall(rooms, q, total, 0, 0);
+	cout << makewall(rooms, q, total, 0,0, 0);
 }
