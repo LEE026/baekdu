@@ -10,6 +10,7 @@ typedef pair<int, int> pii;
 void shortdist(vector<vector<pii>>& graph, vector<int>& dist, int start) {
 	priority_queue<pii> pq;
 	pq.push({ 0,start });
+	dist[start] = 0;
 
 	while (!pq.empty()) {
 		int d = -pq.top().first;
@@ -54,7 +55,6 @@ int main(void) {
 
 	int result = 0;
 	for (int i = 1; i <= n; i++) {
-		if (i == x) continue;
 		result = max(result, dist[0][i] + dist[1][i]);
 	}
 
