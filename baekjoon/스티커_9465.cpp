@@ -1,38 +1,35 @@
 #include<iostream>
 #include<algorithm>
+#include<vector>
 using namespace std;
 
-int list[100000][2];
 
 int main(void) {
 	cin.tie(NULL);
 	ios::sync_with_stdio(false);
 	cout.tie(NULL);
-	
-	int testcase;
-	int n;
-	cin >> testcase;
 
-	for (int t = 0; t < testcase; t++) {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
 		cin >> n;
-		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < n; j++) {
-				cin >> list[j][i];
-			}
-		}
-		if (n == 1) {
-			cout << max(list[0][0], list[0][1]);
-			continue;
-		}
-		list[1][0] += list[0][1];
-		list[1][1] += list[0][0];
+		vector<vector<int>> arr(2, vector<int>(n + 1));
 
-		for (int i = 2; i < n; i++) {
-			for (int j = 0; j < 2; j++) {
-				list[i][j] = max(max(list[i - 2][0], list[i - 2][1]), list[i - 1][(j + 1) % 2]) + list[i][j];
+		for (int i = 0; i < 2; i++) {
+			for (int j = 1; j <= n; j++) {
+				cin >> arr[i][j];
 			}
 		}
-		cout << max(list[n - 1][0], list[n - 1][1])<<"\n";
+
+		int result = max(arr[0][1], arr[1][1]);
+		for (int j = 2; j <= n; j++) {
+			for (int i = 0; i < 2; i++) {
+				arr[i][j] += max(arr[(i + 1) % 2][j - 1], arr[(i + 1) % 2][j - 2]);
+				result = max(result, arr[i][j]);
+			}
+		}
+		cout << result << "\n";
 	}
 
 }
