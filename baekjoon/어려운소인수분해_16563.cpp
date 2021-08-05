@@ -24,7 +24,7 @@ int main(void) {
 	for (ll i = 3; i*i <= MAX; i += 2) {
 		if (minPrime[i]==-1) {
 			for (ll j = i*i; j <= MAX; j += i) {				
-				//if (minPrime[j] == -1)
+				if (minPrime[j] == -1)
 					minPrime[j] = i;
 			}
 		}
