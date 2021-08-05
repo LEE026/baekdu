@@ -16,14 +16,14 @@ int main(void) {
 	int n;
 	cin >> n;
 	vector<pii> arr(n);
-	vector<int> result(n+1);
+	vector<int> result(n + 1);
 
 	for (auto& i : arr) {
 		cin >> i.first >> i.second;
 	}
 
 	for (int i = 0; i < n; i++) {
-		result[i] = max(result[max(0,i - 1)], result[i]);
+		result[i + 1] = max(result[i + 1], result[i]);
 
 		int next = i + arr[i].first;
 
@@ -32,6 +32,6 @@ int main(void) {
 		}
 	}
 
-	cout << max(result[n],result[n-1]);
+	cout << result[n];
 
 }
