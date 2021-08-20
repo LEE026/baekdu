@@ -43,7 +43,6 @@ int main(void) {
 		}
 
 
-
 		cin >> w;
 
 		vector<int> result(n + 1,-1);
