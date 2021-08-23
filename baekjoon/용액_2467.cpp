@@ -21,28 +21,27 @@ int main(void) {
 	for(auto& i: arr) {
 		cin >> i;
 	}
-	sort(arr.begin(), arr.end());
-
+	//입력이 오름차순으로 들어오기에 정렬필요 x
 
 	int minv = INT32_MAX;
-	pii idx;
+	pii res;
 	for (int i = 1; i < n; i++) {
 		int now = arr[i-1];//현재 값
 		int pos = lower_bound(arr.begin() + i, arr.end(), -now)-arr.begin();
 
 		if (pos<n && abs(arr[pos]+now) < minv) {
 			minv = abs(arr[pos] + now);
-			idx = { now,arr[pos] };
+			res = { now,arr[pos] };
 		}
 
 		pos--;
 		if (pos>=i && abs(arr[pos] + now) < minv) {;
 			minv = abs(arr[pos] + now);
-			idx = { now,arr[pos] };
+			res = { now,arr[pos] };
 		}
 
 	}
 
-	cout << idx.first << " " << idx.second;
+	cout << res.first << " " << res.second;
 
 }
