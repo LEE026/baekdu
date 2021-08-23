@@ -21,8 +21,7 @@ int main(void) {
 	for (auto& i : arr) {
 		cin >> i;
 	}
-	sort(arr.begin(), arr.end());
-
+	//입력이 오름차순으로 들어오기에 정렬필요 x
 
 	int minv = INT32_MAX;
 	pii idx;
