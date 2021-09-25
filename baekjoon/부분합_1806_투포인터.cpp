@@ -20,23 +20,21 @@ int main(void) {
 
 	int minv = INF;
 	int sum = 0, num;
-	vector<int> arr(n);
-	for (auto& i : arr) {
-		cin >> i;
-	}
-	arr.push_back(0);
-	int i = 0, j = 0;
-	while (j<=n)
-	{
-		if (sum >= s) {
-			minv = min(minv, j - i);
-			sum -= arr[i];
-			i++;
+	queue<int> q;
+
+	for (int i = 0; i < n; i++) {
+		cin >> num;
+		sum += num;
+		q.push(num);
+
+		if (sum < s) continue;
+
+		while (sum - q.front() >= s)
+		{
+			sum -= q.front();
+			q.pop();
 		}
-		else {
-			sum += arr[j];
-			j++;
-		}
+		minv = min(minv, int(q.size()));
 	}
 	cout << minv % INF;
 }
