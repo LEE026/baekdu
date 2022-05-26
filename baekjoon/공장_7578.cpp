@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-#include<map>
+
 
 using namespace std;
 
@@ -51,8 +51,6 @@ public:
 	int get(int i, int j, int arrIdx, int l, int r) {
 		if (l == i && r == j)
 			return arr[arrIdx];
-		if (l <= i && j <= r)
-			return arr[arrIdx];
 
 		int mid = (i + j) / 2;
 		int sum = 0;
@@ -72,17 +70,17 @@ int main(void) {
 	int n;
 	cin >> n;
 	segTree seg(n);
-	map<int, int> m;
-	vector<int> arr(n);
-	for (int i = 0; i < n; i++) {
-		cin >> arr[i];
-		m[arr[i]] = i;
-	}
-	
+	vector<int> arr2(1000001);
 	int num;
 	for (int i = 0; i < n; i++) {
 		cin >> num;
-		arr[m[num]] = i;
+		arr2[num] = i;
+	}
+	
+	vector<int> arr(n);
+	for (int i = 0; i < n; i++) {
+		cin >> num;
+		arr[i] = arr2[num];
 	}
 
 	ll result = 0;
